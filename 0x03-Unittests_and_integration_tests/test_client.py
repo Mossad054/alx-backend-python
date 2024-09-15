@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Unit test Test client
+Test client unittest
 """
 
 
@@ -15,7 +15,7 @@ from fixtures import TEST_PAYLOAD
 
 class TestGithubOrgClient(unittest.TestCase):
     """
-    Test the GithubOrgClient class methods
+    check GithubOrgClient class methods
     """
     @parameterized.expand([
         ("google"),
@@ -24,9 +24,9 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('client.get_json', return_value={"payload": True})
     def test_org(self, org, mock_org):
         """
-        Test TestGithubOrgClient's org method
+        check TestGithubOrgClient's org method
         Args:
-            org (str): organisation's name
+            org (str): organisation name
         """
         org_test = GithubOrgClient(org)
         test_response = org_test.org
@@ -35,8 +35,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
     def test_public_repos_url(self):
         """
-        Test TestGithubOrgClient's _public_repos_url method works
-        as expected.
+        check TestGithubOrgClient's _public_repos_url method works
+        as ewell
         """
         with patch.object(GithubOrgClient,
                           'org',
@@ -52,7 +52,7 @@ class TestGithubOrgClient(unittest.TestCase):
                                             {'name': 'alx'}])
     def test_public_repos(self, mock_repo):
         """
-        Test GithubOrgClient's public_repos method
+        Check GithubOrgClient' public_repos
         """
         with patch.object(GithubOrgClient,
                           '_public_repos_url',
@@ -75,7 +75,7 @@ class TestGithubOrgClient(unittest.TestCase):
         Test GithubOrgClient's has_license method
         Args:
             repo (dict): dictionary
-            license_key (str): license in the repo dict
+            license_key (str): license of repo dict
         """
         test_instance = GithubOrgClient('holberton')
         license_available = test_instance.has_license(repo, license_key)
@@ -84,8 +84,8 @@ class TestGithubOrgClient(unittest.TestCase):
 
 def requests_get(*args, **kwargs):
     """
-    Function that mocks requests.get function
-    Returns the correct json data based on the given input url
+    mocks requestfunc.get function
+    Returns correct json data based on the input url
     """
     class MockResponse:
         """
@@ -116,8 +116,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """
-        Set up function for TestIntegrationGithubOrgClient class
-        Sets up a patcher to be used in the class methods
+        Setsfunction for TestIntegrationGithubOrgClient class
+        Sets a patcher to be used in the class methods
         """
         cls.get_patcher = patch('utils.requests.get', side_effect=requests_get)
         cls.get_patcher.start()
@@ -127,7 +127,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def tearDownClass(cls):
         """
         Tear down resources set up for class tests.
-        Stops the patcher that had been started
+        Stop patcher that had been started
         """
         cls.get_patcher.stop()
 
