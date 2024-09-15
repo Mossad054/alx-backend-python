@@ -21,10 +21,10 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a", "b"), 2),
     ])
     def test_access_nested_map(
-            self,
-            nested_map: Dict,
-            path: Tuple[str],
-            expected: Union[Dict, int]
+        self,
+        nested_map: Dict,
+        path: Tuple[str],
+        expected: Union[Dict, int]
     ) -> None:
         """Tests `access_nested_map`'s output."""
         self.assertEqual(access_nested_map(nested_map, path), expected)
@@ -34,10 +34,10 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": 1}, ("a", "b"), KeyError),
     ])
     def test_access_nested_map_exception(
-            self,
-            nested_map: Dict,
-            path: Tuple[str],
-            exception: Exception
+        self,
+        nested_map: Dict,
+        path: Tuple[str],
+        exception: Exception
     ) -> None:
         """Tests `access_nested_map`'s exception raising."""
         with self.assertRaises(exception):
@@ -52,9 +52,9 @@ class TestGetJson(unittest.TestCase):
         ("http://holberton.io", {"payload": False}),
     ])
     def test_get_json(
-            self,
-            test_url: str,
-            test_payload: Dict
+        self,
+        test_url: str,
+        test_payload: Dict
     ) -> None:
         """Tests `get_json`'s output."""
         mock_response = Mock()
@@ -77,7 +77,7 @@ class TestMemoize(unittest.TestCase):
             def a_property(self):
                 return self.a_method()
 
-    with patch.object(TestClass, "a_method", return_value=42) as mock_method:
+        with patch.object(TestClass, "a_method", return_value=42) as mock_method:
             test_class = TestClass()
             self.assertEqual(test_class.a_property, 42)
             self.assertEqual(test_class.a_property, 42)
@@ -86,3 +86,4 @@ class TestMemoize(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
